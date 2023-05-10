@@ -1,8 +1,9 @@
-
 const db = require('../data/db-config.js');
 
 const getAll = () => {
- 
+ let query = db('accounts');
+
+
 }
 
 const getById = id => {
