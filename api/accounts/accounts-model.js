@@ -1,9 +1,12 @@
+
+const db = require('../data/db-config.js');
+
 const getAll = () => {
-  // DO YOUR MAGIC
+ 
 }
 
 const getById = id => {
-  // DO YOUR MAGIC
+ 
 }
 
 const create = account => {
