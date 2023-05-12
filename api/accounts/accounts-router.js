@@ -30,7 +30,6 @@ router.post('/',
 
 router.put('/:id',
   md.checkAccountId,
-  md.checkAccountNameUnique,
   md.checkAccountPayload,
  async (req, res, next) => {
   try{
