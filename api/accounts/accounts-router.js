@@ -11,9 +11,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:id',
-  md.checkAccountId,
-  async (req, res,) => {
+router.get('/:id', md.checkAccountId, async (req, res,) => {
     res.json(req.account)
   })
 
@@ -35,10 +33,8 @@ router.put('/:id',
   md.checkAccountNameUnique,
   md.checkAccountPayload,
  async (req, res, next) => {
-  const { id } = req.params
-  const { account } = req.body
   try{
-const updatedAccount = await Account.updateById(id, account)
+const updatedAccount = await Account.updateById(req.params.id, req.body)
     res.status(200).json(updatedAccount)
   } catch (err) {
     next(err)
@@ -46,14 +42,14 @@ const updatedAccount = await Account.updateById(id, account)
     
   });
 
-router.delete('/:id',
-  md.checkAccountId,
-  (req, res, next) => {
-    Account.deleteById(req.params.id)
-    .then(res => {
-      res.json(res)
-    })
-    .catch(next)
+router.delete('/:id', md.checkAccountId, async (req, res, next) => {
+   try {
+     await Account.deleteById(req.params.id)
+      res.json(req.account)
+    }
+    catch(err) {
+      next(err)
+    }
   })
 
 router.use((err, req, res, next) => { // eslint-disable-line
